@@ -6,6 +6,7 @@
     <OutputType>Exe</OutputType>
     <UseMaui>true</UseMaui>
     <SingleProject>true</SingleProject>
+    <Nullable>enable</Nullable>
     <UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
   </PropertyGroup>
   <PropertyGroup>
@@ -22,15 +23,20 @@
     <SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
-    <MauiIcon Include="Resources\appicon.png" IsAppIcon="true" Color="#F8F8F8" />
+    <MauiIcon Include="Resources\appicon.png" IsAppIcon="true" Color="#F8F8F8" ForegroundScale="0.90" />
     <MauiSplashScreen Include="Resources\skiasharplogo.png" BaseSize="256" Color="#F8F8F8" />
+    <MauiImage Include="Resources\Images\*" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.Contains('-ios')) Or $(TargetFramework.Contains('-maccatalyst'))">
+    <MauiIcon Remove="Resources\appicon.png" />
+    <MauiIcon Include="Resources\appicon.png" IsAppIcon="true" Color="#F8F8F8" ForegroundScale="1.30" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Maui.Core" Version="$(MauiVersion)" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="SkiaSharp" Version="3.119.3-preview.1.1" />
-    <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.3-preview.1.1" />
+    <PackageReference Include="SkiaSharp" Version="4.150.0-preview.1.1" />
+    <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="4.150.0-preview.1.1" />
   </ItemGroup>
 </Project>
